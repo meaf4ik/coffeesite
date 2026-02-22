@@ -108,6 +108,50 @@ h1 {
     box-shadow: 0 15px 30px rgba(212, 163, 115, 0.5);
     background: #c39262;
 }
+
+        /* Стили для секции меню */
+.menu-section {
+    position: relative;
+    z-index: 1;
+    padding: 100px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    width: 100%;
+    max-width: 1100px;
+}
+
+.menu-item {
+    background: var(--block-capuccino);
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+    padding: 30px;
+    color: var(--text-milk);
+    text-align: left;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu-item:hover {
+    transform: scale(1.05);
+    background: rgba(111, 78, 55, 0.95);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.price {
+    display: block;
+    margin-top: 15px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--accent-gold);
+}
     </style>
 </head>
 <body>
@@ -139,9 +183,65 @@ h1 {
     <div class="glass-card">
         <h1>Эстетика Кофе</h1>
         <p>Почувствуйте глубину вкуса в каждой капле. Мы создаем не просто напитки, мы создаем моменты вдохновения в стиле минимализма.</p>
-        <button class="cta-button">Посмотреть меню</button>
+        <button class="cta-button" onclick="scrollToMenu()">Посмотреть меню</button>
     </div>
 </div>
+    <section id="menu" class="menu-section">
+    <h2 style="color: #4E342E; font-size: 2.5rem; margin-bottom: 20px;">Наше Меню</h2>
+    <div class="menu-grid">
+    <div class="menu-item">
+        <h3>Американо</h3>
+        <p>Мягкий вкус на основе двойного эспрессо с добавлением горячей воды.</p>
+        <span class="price">900 ₸</span>
+    </div>
+
+    <div class="menu-item">
+        <h3>Латте</h3>
+        <p>Нежнейший кофейный напиток с большим количеством вспененного молока.</p>
+        <span class="price">1 300 ₸</span>
+    </div>
+
+    <div class="menu-item">
+        <h3>Айс Кофе</h3>
+        <p>Освежающий классический кофе со льдом. Идеально для бодрого дня.</p>
+        <span class="price">1 100 ₸</span>
+    </div>
+
+    <div class="menu-item">
+        <h3>Фраппучино</h3>
+        <p>Густой кофейный коктейль со льдом, нежными сливками и сиропом на выбор.</p>
+        <span class="price">1 600 ₸</span>
+    </div>
+
+    <div class="menu-item">
+        <h3>Смузи Ягодный</h3>
+        <p>Микс из свежей клубники, малины и черники. Заряд витаминов.</p>
+        <span class="price">1 800 ₸</span>
+    </div>
+
+    <div class="menu-item">
+        <h3>Смузи Тропик</h3>
+        <p>Освежающее сочетание манго, ананаса и кокосового молока.</p>
+        <span class="price">1 800 ₸</span>
+    </div>
+
+    <div class="menu-item" style="border: 1px dashed var(--accent-gold);">
+        <h3>Альтернативное молоко</h3>
+        <p>Замените обычное молоко на кокосовое, миндальное, овсяное или фундучное.</p>
+        <span class="price">+ 400 ₸</span>
+    </div>
+</div>
+</section>
+
+    <script>
+    function scrollToMenu() {
+        const menuSection = document.getElementById('menu');
+        menuSection.scrollIntoView({ 
+            behavior: 'smooth', // Плавная анимация
+            block: 'center'    // Центрирует секцию на экране
+        });
+    }
+</script>
 
 </body>
 </html>
