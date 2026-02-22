@@ -1,1 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Aroma — Premium Selection</title>
+    <style>
+        :root {
+            --bg-milk: #F9F4EF; /* Мягко-молочный */
+            --block-capuccino: rgba(111, 78, 55, 0.85); /* Капучино с прозрачностью */
+            --text-milk: #F9F4EF; 
+            --accent-gold: #D4A373; /* Дополнительный акцент для деталей */
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-milk);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- СЛОЙ С ПЛАВАЮЩИМИ ЗЕРНАМИ --- */
+        .grain-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Чтобы зерна не мешали кликать на кнопки */
+            z-index: 0;
+        }
+
+        .grain {
+            position: absolute;
+            fill: #4E342E;
+            opacity: 0.1;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+
+        /* --- ОСНОВНОЙ КОНТЕНТ --- */
+        .main-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 20px;
+        }
+
+        .glass-card {
+            background: var(--block-capuccino);
+            backdrop-filter: blur(10px); /* Тот самый эффект стекла */
+            border-radius: 20px;
+            padding: 30px;
+            color: var(--text-milk);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 { font-size: 2.5rem; margin-bottom: 15px; }
+        p { line-height: 1.6; opacity: 0.9; }
+
+      .glass-card {
+    padding: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+}
+
+.cta-button {
+    margin-top: 30px;
+    padding: 15px 40px;
+    background: var(--accent-gold);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(212, 163, 115, 0.3);
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(212, 163, 115, 0.5);
+    background: #c39262;
+}
+    </style>
+</head>
+<body>
+
+   <div class="grain-container">
+    <svg class="grain" style="width: 120px; top: 70%; left: 5%; animation-duration: 28s;" viewBox="0 0 100 150">
+        <defs>
+            <linearGradient id="grainGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#5D4037;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#3E2723;stop-opacity:1" />
+            </linearGradient>
+        </defs>
+        <path d="M50,10 C20,10 5,40 5,75 C5,110 20,140 50,140 C80,140 95,110 95,75 C95,40 80,10 50,10 Z" fill="url(#grainGrad1)"/>
+        <path d="M50,15 C45,40 55,110 50,135" stroke="#2D1B17" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.6"/>
+    </svg>
+
+    <svg class="grain" style="width: 80px; top: 40%; left: 85%; animation-duration: 22s; transform: rotate(45deg);" viewBox="0 0 100 150">
+        <path d="M50,10 C20,10 5,40 5,75 C5,110 20,140 50,140 C80,140 95,110 95,75 C95,40 80,10 50,10 Z" fill="#4E342E"/>
+        <path d="M50,15 C55,40 45,110 50,135" stroke="#2D1B17" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
+    </svg>
+
+    <svg class="grain" style="width: 100px; top: 90%; left: 40%; animation-duration: 35s; transform: rotate(-20deg);" viewBox="0 0 100 150">
+        <path d="M50,10 C20,10 5,40 5,75 C5,110 20,140 50,140 C80,140 95,110 95,75 C95,40 80,10 50,10 Z" fill="#3E2723"/>
+        <path d="M50,15 C48,45 52,105 50,135" stroke="#1B0E0B" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+    </svg>
+</div>
+
+    <div class="main-content">
+    <div class="glass-card">
+        <h1>Эстетика Кофе</h1>
+        <p>Почувствуйте глубину вкуса в каждой капле. Мы создаем не просто напитки, мы создаем моменты вдохновения в стиле минимализма.</p>
+        <button class="cta-button">Посмотреть меню</button>
+    </div>
+</div>
+
+</body>
+</html>
