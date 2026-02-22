@@ -165,11 +165,121 @@ h1 {
 .menu-item:hover .menu-img {
     transform: translateY(-5px) scale(1.05); /* Картинка чуть оживает при наведении */
 }
+
+        footer {
+    background: var(--block-capuccino);
+    color: var(--text-milk);
+    padding: 60px 20px;
+    text-align: center;
+    margin-top: 50px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.social-links {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-links a {
+    color: var(--text-milk);
+    text-decoration: none;
+    font-weight: bold;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.social-links a:hover {
+    opacity: 1;
+}
+        .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+        header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    transition: all 0.4s ease;
+    background: transparent; /* В самом верху она прозрачная */
+}
+
+/* Класс, который добавится при скролле через JS */
+header.scrolled {
+    background: rgba(249, 244, 239, 0.85); /* Молочный с прозрачностью */
+    backdrop-filter: blur(10px);
+    padding: 15px 50px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4E342E;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #4E342E;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--accent-gold);
+}
     </style>
 </head>
 <body>
 
+    <header id="header">
+    <a href="#" class="logo">
+        <span style="font-size: 1.8rem;">☕</span> Coffee Aroma
+    </a>
+    <nav class="nav-links">
+        <a href="#">Главная</a>
+        <a href="#menu" onclick="scrollToMenu(); return false;">Меню</a>
+        <a href="#">О нас</a>
+        <a href="#">Контакты</a>
+    </nav>
+</header>
+
    <div class="grain-container">
+       <svg class="grain" style="width: 200px; top: 120%; left: -50px; opacity: 0.05;" viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="80" fill="none" stroke="#4E342E" stroke-width="2" />
+    <circle cx="100" cy="100" r="70" fill="none" stroke="#4E342E" stroke-width="1" stroke-dasharray="10 5" />
+</svg>
+
+<svg class="grain" style="width: 150px; top: 180%; right: -30px; opacity: 0.05; transform: rotate(15deg);" viewBox="0 0 200 200">
+    <path d="M100,20 A80,80 0 1,0 100,180 A80,80 0 1,0 100,20" fill="none" stroke="#4E342E" stroke-width="3" />
+</svg>
     <svg class="grain" style="width: 120px; top: 70%; left: 5%; animation-duration: 28s;" viewBox="0 0 100 150">
         <defs>
             <linearGradient id="grainGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -202,6 +312,13 @@ h1 {
     <section id="menu" class="menu-section">
     <h2 style="color: #4E342E; font-size: 2.5rem; margin-bottom: 20px;">Наше Меню</h2>
     <div class="menu-grid">
+        <div class="menu-item">
+        <h3>Эспрессо</h3>
+        <img src="assets/img/coffee.png" alt="Эспрессо" class="menu-img">
+        <p>Насыщенный напиток с плотной пенкой (кремой)</p>
+        <span class="price">650 ₸</span>
+    </div>
+        
     <div class="menu-item">
         <h3>Американо</h3>
         <img src="assets/img/coffee.png" alt="Американо" class="menu-img">
@@ -259,6 +376,18 @@ h1 {
     </div>
 </div>
 </section>
+    <footer>
+    <div class="footer-content">
+        <h2>Ждем вас в гости</h2>
+        <p>г. Алматы, ул. Абая 150 | Ежедневно с 08:00 до 22:00</p>
+        <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">Telegram</a>
+            <a href="#">WhatsApp</a>
+        </div>
+        <p style="font-size: 0.8rem; opacity: 0.5; margin-top: 30px;">© 2026 Coffee Aroma. Сделано с любовью.</p>
+    </div>
+</footer>
 
     <script>
     function scrollToMenu() {
@@ -268,6 +397,14 @@ h1 {
             block: 'center'    // Центрирует секцию на экране
         });
     }
+        window.addEventListener("scroll", function() {
+    const header = document.getElementById("header");
+    if (window.scrollY > 50) {
+        header.classList.add("scrolled");
+    } else {
+        header.classList.remove("scrolled");
+    }
+});
 </script>
 
 </body>
