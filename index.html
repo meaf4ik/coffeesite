@@ -122,10 +122,19 @@ h1 {
 
 .menu-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+    /* На мобилках — 2 колонки, на ПК — 3 или больше */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 15px; /* Уменьшаем отступы для мобильных */
     width: 100%;
     max-width: 1100px;
+    padding: 0 10px;
+}
+
+@media (min-width: 768px) {
+    .menu-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+    }
 }
 
 .menu-item {
@@ -255,6 +264,57 @@ header.scrolled {
 .nav-links a:hover {
     color: var(--accent-gold);
 }
+        /* Базовый класс для элементов, которые должны появиться */
+.animate-on-load {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Задержки, чтобы элементы появлялись по очереди (каскадом) */
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.5s; }
+.delay-3 { animation-delay: 0.8s; }
+
+/* Анимация для зерен (чтобы они не просто летали, а плавно возникли) */
+.grain {
+    transition: opacity 2s ease;
+}
+        @media (max-width: 600px) {
+    header {
+        padding: 10px 15px;
+        flex-direction: column; /* Логотип сверху, ссылки снизу */
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .nav-links {
+        gap: 15px;
+        font-size: 0.9rem;
+    }
+    
+    .menu-item {
+        padding: 15px; /* Меньше падинги внутри карточек */
+    }
+    
+    .menu-img {
+        height: 120px; /* Уменьшаем высоту картинок для мобильных */
+    }
+
+    h3 {
+        font-size: 1rem; /* Компактные заголовки */
+    }
+}
     </style>
 </head>
 <body>
@@ -303,15 +363,15 @@ header.scrolled {
 </div>
 
     <div class="main-content">
-    <div class="glass-card">
+    <div class="glass-card animate-on-load delay-1">
         <h1>Эстетика Кофе</h1>
         <p>Почувствуйте глубину вкуса в каждой капле. Мы создаем не просто напитки, мы создаем моменты вдохновения в стиле минимализма.</p>
         <button class="cta-button" onclick="scrollToMenu()">Посмотреть меню</button>
     </div>
 </div>
     <section id="menu" class="menu-section">
-    <h2 style="color: #4E342E; font-size: 2.5rem; margin-bottom: 20px;">Наше Меню</h2>
-    <div class="menu-grid">
+    <h2 class="animate-on-load delay-2" style="color: #4E342E; font-size: 2.5rem; margin-bottom: 20px;">Наше Меню</h2>
+    <div class="menu-grid animate-on-load delay-3">
         <div class="menu-item">
         <h3>Эспрессо</h3>
         <img src="assets/img/coffee.png" alt="Эспрессо" class="menu-img">
@@ -405,6 +465,21 @@ header.scrolled {
         header.classList.remove("scrolled");
     }
 });
+        function revealOnScroll() {
+    const reveals = document.querySelectorAll(".reveal");
+    const windowHeight = window.innerHeight;
+
+    reveals.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 100) {
+            element.classList.add("active");
+        }
+    });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+// Запускаем один раз при загрузке, чтобы проверить видимые элементы
+window.addEventListener("load", revealOnScroll);
 </script>
 
 </body>
